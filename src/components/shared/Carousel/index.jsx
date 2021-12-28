@@ -1,7 +1,11 @@
-import React from 'react'
-import 'carousel.css'
+import React, { useState } from 'react'
+import Card from '../Card'
+import Paginator from '../Paginator'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import './carousel.css'
 
-export default Carousel(props) {
+export default function Carousel(props) {
   const [index, setIndex] = useState(0)
   
   const slideLeft = () => {
@@ -11,7 +15,7 @@ export default Carousel(props) {
   }
   
   const slideRight = () => {
-    if (index + 1 <= services.length-1) {
+    if (index + 1 <= props.couches.length-1) {
       setIndex(index + 1)
     }
   }
@@ -21,92 +25,28 @@ export default Carousel(props) {
     setIndex(index + n)
   }
   
-  const handlePointerEvent = (e) => {
-    /* check which type of event we have, 
-    and set a flag variable */
-    let isTouchEvent = e.type === "touchstart" ? true : false;
-
-    /* this is our card we will move */
-    let card = e.target;
-    /* to keep track of the value to offset the card left */
-    let offset = 0;
-    /* keeps the initial mouse click x value */
-    let initialX = isTouchEvent ? e.touches[0].clientX : e.clientX;
-
-    /* mouse events */
-    /* set the documents onmousemove event to use this function */
-    document.onmousemove = onPointerMove;
-    /* sets the documents onmouseup event to use this function */
-    document.onmouseup = onPointerEnd;
-
-    /* touch events */
-    /* set the documents ontouchmove to this function */
-    document.ontouchmove = onPointerMove;
-    /* set the documents ontouchend to this function */
-    document.ontouchend = onPointerEnd;
-
-    /* when the mouse moves we handle the event here */
-    function onPointerMove(e) {
-      /* set offset to the current position of the cursor,
-      minus the initial starting position  */
-      offset = (isTouchEvent ? e.touches[0].clientX : e.clientX) - initialX;
-      if (offset <= -100) {
-        slideRight();
-        /* if we're at the last card, snap back to center */
-        if (index === services.length - 1) {
-          card.style.left = 0;
-        } else {
-          /* hide the shift back to center 
-        until after the transition */
-          setTimeout(() => {
-            card.style.left = 0;
-          }, 1000);
-        }
-        return;
-      }
-      if (offset >= 100) {
-        slideLeft();
-        /* if we're at the first card, snap back to center */
-        if (index === 0) {
-          card.style.left = 0;
-        } else {
-          /* hide the shift back to center 
-        until after the transition */
-          setTimeout(() => {
-            card.style.left = 0;
-          }, 1000);
-        }
-        return;
-      }
-      /* set the left style property of the card to the offset value */
-      card.style.left = offset + "px";
-    }
-
-    function onPointerEnd(e) {
-      /* if user releases mouse early,
-      card needs to snap back */
-      if (offset < 0 && offset > -100) {
-        card.style.left = 0;
-      }
-      if (offset > 0 && offset < 100) {
-        card.style.left = 0;
-      }
-      /* remove functions from event listeners
-      (stop tracking pointer movements) */
-      document.onmousemove = null;
-      document.onmouseup = null;
-
-      document.ontouchmove = null;
-      document.ontouchend = null;
-    }
-  }
   return (
     <div className='container'>
       <div className='card-container'>
-        {props.map((prop, n) => {
-          let position = n index ? "nextCard" : n === index ? "activeCard" : "prevCard"
-          return <Card {...prop} cardStyle={position}
+        {props.couches.map((couch, n) => {
+          let position = n > index ? "nextCard" : n === index ? "activeCard" : "prevCard"
+          return <Card {...couch} cardStyle={position} />
         })}
+        <FontAwesomeIcon
+          onClick={slideLeft}
+          className="leftBtn"
+          icon={faChevronLeft}
+        />
+        <FontAwesomeIcon
+          onClick={slideRight}
+          className="rightBtn"
+          icon={faChevronRight}
+        />
+        <Paginator
+          dataLength={props.couches.length}
+          activeIndex={index}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </div>
   )

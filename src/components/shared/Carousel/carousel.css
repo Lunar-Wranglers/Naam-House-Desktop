@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+}
+.card-container {
+  position: relative;
+  width: 20vw;
+  height: 71vh;
+}
+
+.leftBtn {
+  position: absolute;
+  bottom: 15vh;
+  right: 25vw;
+  margin:auto;
+}
+.rightBtn {
+  position: absolute;
+  bottom: 15vh;
+  left: 22vw;
+  margin:auto;
+}
+.prevCard {
+  left: calc(0% + 2vw);
+  opacity: 0;
+  z-index: -1;
+}
+
+.activeCard {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nextCard {
+  left: 100%;
+  transform: translateX(calc(-100% - 2vw));
+  opacity: 0;
+  z-index: -1;
+}
