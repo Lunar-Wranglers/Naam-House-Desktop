@@ -1,12 +1,7 @@
-import React, { useState } from 'react'
-import Card from '../../components/shared/Card'
-import Paginator from '../../components/shared/Paginator'
-import './home.css'
-import services from '../../components/shared/data/data.js'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import React from 'react'
+import 'carousel.css'
 
-export default function Home(props) {
+export default Carousel(props) {
   const [index, setIndex] = useState(0)
   
   const slideLeft = () => {
@@ -105,25 +100,13 @@ export default function Home(props) {
       document.ontouchend = null;
     }
   }
-  
   return (
     <div className='container'>
       <div className='card-container'>
-        {services.map((service, n) => {
-          let position = n > index ? "nextCard" : n === index ? "activeCard" : "prevCard"
-          return <Card {...service} cardStyle={position}/>
+        {props.map((prop, n) => {
+          let position = n index ? "nextCard" : n === index ? "activeCard" : "prevCard"
+          return <Card {...prop} cardStyle={position}
         })}
-        <FontAwesomeIcon
-          onClick={slideLeft}
-          className="leftBtn"
-          icon={faChevronLeft}
-        />
-        <FontAwesomeIcon
-          onClick={slideRight}
-          className="rightBtn"
-          icon={faChevronRight}
-        />
-        <Paginator dataLength={services.length} activeIndex={index} handlePageChange={handlePageChange}/>
       </div>
     </div>
   )
