@@ -122,7 +122,7 @@ export default function Carousel(props) {
           icon={faChevronRight}
         />
         <Paginator
-          dataLength={props.length}
+          dataLength={props.couches.length}
           activeIndex={index}
           handlePageChange={handlePageChange}
         />
