@@ -1,0 +1,42 @@
+.card {
+  position:absolute;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 40vh;
+  width: 87vw;
+  margin:auto;
+}
+
+.card h2 {
+  color: linear-gradient(#356C27, #0C0B37);
+  font-family: Libre Baskerville;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  height: 5.54vh;
+  margin-top: 1vh;
+}
+.picholder {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card img {
+  height: 9vh;
+  mix-blend-mode: multiply;
+  width: 7vw;
+}
+
+.blurbholder {
+  color: var(--black);
+  font-family: var(--font-family-open_sans);
+  font-size: var(--font-size-m);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: center;
+  width: 25vw;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,600|Libre+Baskerville:700");

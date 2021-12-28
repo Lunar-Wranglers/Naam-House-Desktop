@@ -1,12 +1,19 @@
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/shared/Layout'
+import Home from './pages/Home'
 
-import './App.css';
+import './App.css'
 
-function App() {
+
+function App(props) {
   return (
-    <div className="App">
-      Please hold...
-    </div>
-  );
+    <Layout id='layout'>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </Layout>
+  )
 }
 
-export default App;
+export default App
