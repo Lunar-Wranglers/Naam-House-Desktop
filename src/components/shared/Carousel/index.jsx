@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import './carousel.css'
 
-export default function Carousel(props) {
+export default function Carousel(props, {page}) {
   const [index, setIndex] = useState(0)
   
   const slideLeft = () => {
@@ -20,8 +20,8 @@ export default function Carousel(props) {
     }
   }
   
-  const handlePageChange = (page) => {
-    let n = page - index
+  const handlePageChange = (slide) => {
+    let n = slide - index
     setIndex(index + n)
   }
   

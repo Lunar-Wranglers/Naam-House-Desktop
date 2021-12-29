@@ -38,4 +38,13 @@ const services = [
   }
 ]
 
-export default services
+const info = [
+  {
+    
+  }
+]
+
+export { 
+  services,
+  info
+}
