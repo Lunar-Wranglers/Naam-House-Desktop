@@ -11,6 +11,8 @@ export default function Carousel(props, {page}) {
   const slideLeft = () => {
     if (index - 1 >= 0){
       setIndex(index - 1)
+    } else if (index - 1 == 0){
+      setIndex(props.couches.indexOf(searchValue(, fromIndex))
     }
   }
   
